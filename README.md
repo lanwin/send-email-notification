@@ -118,7 +118,7 @@ Checkout this cool repository:
 - uses: licenseware/send-email-notification@v1
   with:
     api-key: ${{ secrets.SENDGRID_API_KEY }}
-    api-host: https://api.eu.sendgrid.com
+    region: eu
     subject: Test Subject
     from-email: verified-email@licenseware.io
     to-email: john-doe@licenseware.io
