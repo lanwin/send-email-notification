@@ -22,20 +22,20 @@ This repository is used inside Github Actions in the following format:
 ## Send email to one address
 
 ```yaml
-      - uses: licenseware/send-email-notification@v1
-        with:
-          api-key: ${{ secrets.SENDGRID_API_KEY }}
-          subject: Test Subject
-          from-email: verified-email@licenseware.io
-          to-email: john-doe@licenseware.io
-          markdown-body: |
-            # My Markdown Title
+- uses: licenseware/send-email-notification@v1
+  with:
+    api-key: ${{ secrets.SENDGRID_API_KEY }}
+    subject: Test Subject
+    from-email: verified-email@licenseware.io
+    to-email: john-doe@licenseware.io
+    markdown-body: |
+      # My Markdown Title
 
-            This is a description
+      This is a description
 
-            ## Another header
+      ## Another header
 
-            Another description
+      Another description
 ```
 
 ## Send email to multiple addresses upon Github release
@@ -65,27 +65,26 @@ jobs:
           from-email: verified-email@licenseware.io
           to-email: ${{ matrix.to-emails }}
           markdown-body: ${{ github.event.release.body }}
-
 ```
 
 ## Send email with attachments
 
 ```yaml
-      - uses: licenseware/send-email-notification@v1
-        with:
-          api-key: ${{ secrets.SENDGRID_API_KEY }}
-          subject: Test Subject
-          from-email: verified-email@licenseware.io
-          to-email: some-dude@licenseware.io
-          markdown-body: |
-            Hey, check out this file
-          attachments: |
-            ./path/to/file1.txt
-            ./path/to/file2.txt
-          # optionally, a list of zero, one, or the same size {inline, attachment}
-          attachments-disposition: |
-            attachment
-            attachment
+- uses: licenseware/send-email-notification@v1
+  with:
+    api-key: ${{ secrets.SENDGRID_API_KEY }}
+    subject: Test Subject
+    from-email: verified-email@licenseware.io
+    to-email: some-dude@licenseware.io
+    markdown-body: |
+      Hey, check out this file
+    attachments: |
+      ./path/to/file1.txt
+      ./path/to/file2.txt
+    # optionally, a list of zero, one, or the same size {inline, attachment}
+    attachments-disposition: |
+      attachment
+      attachment
 ```
 
 ## Run Docker Container Locally
@@ -111,4 +110,18 @@ Checkout this cool repository:
 
 <https://github.com/licenseware/send-email-notification>
 """
+```
+
+### Support for SendGrid EU region
+
+```yaml
+- uses: licenseware/send-email-notification@v1
+  with:
+    api-key: ${{ secrets.SENDGRID_API_KEY }}
+    api-host: https://api.eu.sendgrid.com
+    subject: Test Subject
+    from-email: verified-email@licenseware.io
+    to-email: john-doe@licenseware.io
+    markdown-body: |
+      Mailbody
 ```

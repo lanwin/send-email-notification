@@ -51,6 +51,7 @@ parser.add_argument(
     help="Email address to send the notification from",
 )
 parser.add_argument("--api-key", type=str, required=True, help="SendGrid API key")
+parser.add_argument("--api-host", type=str, required=False, help="SendGrid API host", default="https://api.sendgrid.com")
 parser.add_argument(
     "--attachments",
     type=str,
@@ -131,7 +132,7 @@ if __name__ == "__main__":
         add_attachments(message, args.attachments, args.attachments_disposition)
 
     try:
-        sg = SendGridAPIClient(args.api_key)
+        sg = SendGridAPIClient(args.api_key, args.api_host)
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
