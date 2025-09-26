@@ -133,6 +133,7 @@ if __name__ == "__main__":
 
     try:
         sg = SendGridAPIClient(args.api_key, args.api_host)
+        sg.set_sendgrid_data_residency("eu")
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
